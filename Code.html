@@ -1,0 +1,89 @@
+<html>
+
+	<head>
+		<title>Java Script - Adding Row and Column in HTML Table Dynamically</title>
+	</head>
+	
+	<body>
+	
+		<h1>Sample Table</h1>
+		
+		<table id="myTable" cellpadding="1" cellspacing="1" border="1">
+		
+			<tr>
+				<td><input type="text" /></td>
+				<td><input type="text" /></td>
+				<td><input type="text" /></td>
+			</tr>
+			<tr>
+				<td><input type="text" /></td>
+				<td><input type="text" /></td>
+				<td><input type="text" /></td>
+			</tr>
+			<tr>
+				<td><input type="text" /></td>
+				<td><input type="text" /></td>
+				<td><input type="text" /></td>
+			</tr>
+		
+		</table>
+		
+		<br/>
+		<br/>
+		
+		<div>
+			<input type="button" value="Add Row" onclick="addRow();" />
+			<input type="button" value="Delete Row" onclick="deleteRow();" />
+			<input type="button" value="Add Column" onclick="addColumn();" />
+			<input type="button" value="Delete Column" onclick="deleteColumn();" />
+		</div>
+		
+	</body>
+	
+	<script>
+	
+		function addRow() {
+			var table = document.getElementById("myTable");
+			var count = parseInt(table.rows[0].cells.length);
+			var rowCount = parseInt(prompt("Enter the number of row to be created?"));
+			for(var k = 0; k < rowCount; k++) {
+				var row = table.insertRow(0);
+				for(var i=0;i<count;i++) {
+					row.insertCell(i).innerHTML = "<input type='text' />";
+				}
+			}
+		}
+		
+		function deleteRow() {
+			var rowCount = parseInt(prompt("Enter the number of row to be deleted?"));
+			for(var k = 0; k < rowCount; k++) {
+				document.getElementById("myTable").deleteRow(0);
+			}
+		}
+		
+		function addColumn() {
+			var table = document.getElementsByTagName("body")[0];
+			var row = table.getElementsByTagName("tr");
+			var columnCount = parseInt(prompt("Enter the number of column to be created?"));
+			for(var k = 0; k < columnCount; k++) {
+				for (i = 0; i < row.length; i++) {
+					var td = document.createElement('td');		
+					td.innerHTML = "<input type='text' />";
+					row[i].appendChild(td);
+				}
+			}
+		}
+		
+		function deleteColumn() {
+			var table = document.getElementsByTagName("body")[0];
+			var row = table.getElementsByTagName("tr");
+			var columnCount = parseInt(prompt("Enter the number of column to be created?"));
+			for(var k = 0; k < columnCount; k++) {
+				for (i = 0; i < row.length; i++) {
+					row[i].deleteCell(0);
+				}
+			}
+		}
+		
+	</script>
+</html>
